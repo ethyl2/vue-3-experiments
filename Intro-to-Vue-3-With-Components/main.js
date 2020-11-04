@@ -19,7 +19,9 @@ const app = Vue.createApp({
         
     },
     methods: {
-    //     addToCart() {
+       updateCart()
+     {
+        console.log('time to add to cart')
     //         if (this.variants[this.selectedVariant].quantity) {
     //             if (this.cart[this.selectedVariant]) {
     //                 this.cart[this.selectedVariant] += 1
@@ -28,7 +30,7 @@ const app = Vue.createApp({
     //             }
     //         this.variants[this.selectedVariant].quantity -= 1
     //         }
-    //     },
+        },
     //     removeFromCart() {
     //        if (this.cart[this.selectedVariant] > 0) {
     //            this.cart[this.selectedVariant] -= 1

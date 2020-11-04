@@ -102,15 +102,17 @@ app.component('product-display', {
         
     },
     methods: {
+       
         addToCart() {
-            if (this.variants[this.selectedVariant].quantity) {
-                if (this.cart[this.selectedVariant]) {
-                    this.cart[this.selectedVariant] += 1
-                } else {
-                    this.cart[this.selectedVariant] = 1
-                }
-            this.variants[this.selectedVariant].quantity -= 1
-            }
+            this.$emit('add-to-cart')
+            // if (this.variants[this.selectedVariant].quantity) {
+            //     if (this.cart[this.selectedVariant]) {
+            //         this.cart[this.selectedVariant] += 1
+            //     } else {
+            //         this.cart[this.selectedVariant] = 1
+            //     }
+            // this.variants[this.selectedVariant].quantity -= 1
+            // }
         },
         removeFromCart() {
            if (this.cart[this.selectedVariant] > 0) {
