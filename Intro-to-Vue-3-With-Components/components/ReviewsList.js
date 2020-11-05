@@ -12,7 +12,7 @@ app.component('reviews-list', {
         <h3>Reviews:</h3>
         <ul>
             <li v-for="(review, index) in reviews" :key="index" class="review">
-            <div class="image-cropper">
+            <div class="image-cropper" v-if="review.avatar">
                 <img :src="review.avatar" :alt="review.name" class="avatar-img"/>
             </div>
             <span style="padding-left: 10px;">

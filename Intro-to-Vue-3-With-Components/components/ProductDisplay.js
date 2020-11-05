@@ -153,7 +153,6 @@ app.component('product-display', {
             }
         },
         handleReviewSubmission(submission) {
-            console.log(submission)
             this.reviews.push(submission)
         }
     }

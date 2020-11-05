@@ -79,6 +79,20 @@ label {
   margin-bottom: 5px;
 }
 
+.recommendation-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.recommendation-section input {
+  width: 20%;
+  margin-bottom: 0;
+}
+
+.recommendation-section label {
+  margin-bottom: 0;
+}
+
 li {
   font-size: 18px;
 }
