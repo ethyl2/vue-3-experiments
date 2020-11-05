@@ -167,6 +167,7 @@ textarea {
 
 ul {
   list-style-type: none;
+  padding: 0;
 }
 
 @media only screen and (max-width: 600px) {
@@ -205,4 +206,35 @@ ul {
 .sale-message {
   font-style: italic;
   color: green;
+}
+
+.image-cropper {
+  width: 55px;
+  height: 55px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.avatar-img {
+  /* border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  padding: 0; */
+
+  display: inline;
+  margin: 0 auto;
+  margin-left: -33%;
+  margin-top: -33%;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+}
+
+.review {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }

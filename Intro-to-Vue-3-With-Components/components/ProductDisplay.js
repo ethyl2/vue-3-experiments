@@ -10,7 +10,7 @@ app.component('product-display', {
     `
     <div class="product-display">
         <div class="product-container">
-          <div class="product-image">
+          <div class="product-image product-img">
             <a :href="url" :target="target">
               <img :class="{'out-of-stock-img': !inStock}" :src="image" alt="product"/>
             </a>
@@ -38,11 +38,13 @@ app.component('product-display', {
            
            <div style="display: flex; padding-left: 0;">
             <button class="button" @click="addToCart" :disabled="!inStock" :class="{ disabledButton: !inStock }">Add to Cart</button>
-            <button class="button" @click="removeFromCart" :disabled="!cart" :class="{ disabledButton: !cart }">Remove from Cart</button>
+            <button class="button" @click="removeFromCart">Remove from Cart</button>
           </div>
           </div>
          
         </div>
+        <reviews-list :reviews="reviews"></reviews-list>
+        <review-form @review-submitted="handleReviewSubmission" :product="specificProduct"></review-form>
       </div>
     `,
     data() {
@@ -65,7 +67,8 @@ app.component('product-display', {
             sizes: ['XS', 'S', 'M', 'L', 'XL'],
             currentFontSize: 20,
             currentBValue: 100,
-            goingUp: true 
+            goingUp: true,
+            reviews: [] 
         }
     },
     computed: {
@@ -97,6 +100,9 @@ app.component('product-display', {
         },
         title() {
             return `${this.brand} ${this.product}`
+        },
+        specificProduct() {
+            return `${this.brand} ${this.product} (${this.variants[this.selectedVariant].color})`
         }
         
         
@@ -104,21 +110,16 @@ app.component('product-display', {
     methods: {
        
         addToCart() {
-            this.$emit('add-to-cart')
-            // if (this.variants[this.selectedVariant].quantity) {
-            //     if (this.cart[this.selectedVariant]) {
-            //         this.cart[this.selectedVariant] += 1
-            //     } else {
-            //         this.cart[this.selectedVariant] = 1
-            //     }
-            // this.variants[this.selectedVariant].quantity -= 1
-            // }
+           
+            if (this.variants[this.selectedVariant].quantity > 0) {
+                this.$emit('add-to-cart', this.selectedVariant)
+                this.variants[this.selectedVariant].quantity -= 1
+                
+            }
+            
         },
         removeFromCart() {
-           if (this.cart[this.selectedVariant] > 0) {
-               this.cart[this.selectedVariant] -= 1
-               this.variants[this.selectedVariant].quantity += 1
-           }
+           this.$emit('remove-from-cart', this.selectedVariant)
         },
         updateImage(imageUrl) {
             this.image = imageUrl
@@ -150,6 +151,10 @@ app.component('product-display', {
             height: '2em',
             paddingBottom: '0.5em'
             }
+        },
+        handleReviewSubmission(submission) {
+            console.log(submission)
+            this.reviews.push(submission)
         }
     }
 })
